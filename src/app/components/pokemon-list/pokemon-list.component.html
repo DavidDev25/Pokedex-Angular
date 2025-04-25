@@ -1,18 +1,67 @@
 <div class="pokemon-list">
-    <div *ngIf="isLoading">Loading Pokémon...</div>
-    <div *ngIf="error">{{ error }}</div>
-    
-    @for (pokemon of pokemons; track pokemon.id) {
-      <a [routerLink]="['/pokemon', pokemon.name]" class="pokemon-card">
-        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
-        <h3>{{ pokemon.name | titlecase }}</h3>
-        <div class="types">
-          @for (type of pokemon.types; track type.type.name) {
-            <span class="badge">{{ type.type.name }}</span>
-          }
+  <div *ngIf="isLoading">Loading Pokémon...</div>
+  <div *ngIf="error">{{ error }}</div>
+  
+  @for (pokemon of pokemons; track pokemon.id) {
+    <div class="pokemon-card" 
+         [ngStyle]="{'background-color': getTypeColor(getPrimaryType(pokemon))}"
+         (click)="openModal(pokemon)">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+      <h3>{{ pokemon.name | titlecase }}</h3>
+      <div class="types">
+        @for (type of pokemon.types; track type.type.name) {
+          <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
+            {{ type.type.name }}
+          </span>
+        }
+      </div>
+    </div>
+  } @empty {
+    <p>No Pokémon found.</p>
+  }
+  
+
+  @if (selectedPokemon) {
+    <div class="modal-backdrop" (click)="closeModal()">
+      <div class="modal-content" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(selectedPokemon))}" (click)="$event.stopPropagation()">
+        <span class="close-btn" (click)="closeModal()">&times;</span>
+        
+        <div class="modal-header">
+          <h2>#{{ selectedPokemon.id }} {{ selectedPokemon.name | titlecase }}</h2>
+          <img [src]="selectedPokemon.sprites.front_default" [alt]="selectedPokemon.name" />
         </div>
-      </a>
-    } @empty {
-      <p>No Pokémon found.</p>
-    }
+        
+        <div class="modal-body">
+          <div class="section">
+            <h3>Types</h3>
+            <div class="types">
+              @for (type of selectedPokemon.types; track type.type.name) {
+                <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
+                  {{ type.type.name }}
+                </span>
+              }
+            </div>
+          </div>
+          
+          <div class="section">
+            <h3>Abilities</h3>
+            <ul class="abilities-list">
+              @for (ability of selectedPokemon.abilities; track ability.ability.name) {
+                <li>{{ ability.ability.name | titlecase }}</li>
+              }
+            </ul>
+          </div>
+          
+          <div class="section">
+            <h3>Moves</h3>
+            <div class="moves-list">
+              @for (move of selectedPokemon.moves.slice(0, 5); track move.move.name) {
+                <span class="move">{{ move.move.name | titlecase }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </div>
