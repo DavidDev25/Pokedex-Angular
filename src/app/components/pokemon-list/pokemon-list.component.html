@@ -1,5 +1,7 @@
+
+
 <div class="pokemon-list">
-  <div *ngIf="isLoading">Loading Pokémon...</div>
+  <div *ngIf="isLoading">{{ 'POKEMON_LIST.LOADING' | translate }}</div>
   <div *ngIf="error">{{ error }}</div>
   
   @for (pokemon of pokemons; track pokemon.id) {
@@ -17,10 +19,9 @@
       </div>
     </div>
   } @empty {
-    <p>No Pokémon found.</p>
+    <p>{{ 'POKEMON_LIST.NO_POKEMON' | translate }}</p>
   }
   
-
   @if (selectedPokemon) {
     <div class="modal-backdrop" (click)="closeModal()">
       <div class="modal-content" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(selectedPokemon))}" (click)="$event.stopPropagation()">
@@ -33,7 +34,7 @@
         
         <div class="modal-body">
           <div class="section">
-            <h3>Types</h3>
+            <h3>{{ 'POKEMON_LIST.TYPES' | translate }}</h3>
             <div class="types">
               @for (type of selectedPokemon.types; track type.type.name) {
                 <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
@@ -44,7 +45,7 @@
           </div>
           
           <div class="section">
-            <h3>Abilities</h3>
+            <h3>{{ 'POKEMON_LIST.ABILITIES' | translate }}</h3>
             <ul class="abilities-list">
               @for (ability of selectedPokemon.abilities; track ability.ability.name) {
                 <li>{{ ability.ability.name | titlecase }}</li>
@@ -53,7 +54,7 @@
           </div>
           
           <div class="section">
-            <h3>Moves</h3>
+            <h3>{{ 'POKEMON_LIST.MOVES' | translate }}</h3>
             <div class="moves-list">
               @for (move of selectedPokemon.moves.slice(0, 5); track move.move.name) {
                 <span class="move">{{ move.move.name | titlecase }}</span>
