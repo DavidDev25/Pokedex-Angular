@@ -29,6 +29,9 @@
         <div class="modal-header">
           <h2>#{{ selectedPokemon.id }} {{ selectedPokemon.name | titlecase }}</h2>
           <img [src]="selectedPokemon.sprites.front_default" [alt]="selectedPokemon.name" />
+          <button class="sound-button" (click)="playSoundCry(selectedPokemon.id)">
+            🔊 Hear Pokémon Cry
+          </button>
         </div>
         
         <div class="modal-body">

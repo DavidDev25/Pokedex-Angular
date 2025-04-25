@@ -86,4 +86,14 @@ export class PokemonListComponent implements OnInit {
   closeModal(): void {
     this.selectedPokemon = null;
   }
+  
+  playSoundCry(pokemonId: number): void {
+    const formattedId = pokemonId.toString().padStart(3, '0');
+    const soundUrl = `https://play.pokemonshowdown.com/audio/cries/${formattedId}.mp3`;
+    
+    const audio = new Audio(soundUrl);
+    audio.play().catch(error => {
+      console.error('Error playing Pokemon cry:', error);
+    });
+  }
 }
