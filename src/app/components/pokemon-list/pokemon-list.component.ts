@@ -3,7 +3,7 @@ import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
-import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,6 +18,7 @@ export class PokemonListComponent implements OnInit {
   error: string | null = null;
   selectedPokemon: any = null;
   private pokemonService = inject(PokemonService);
+  private translationService = inject(TranslationService);
 
   typesColorMap: Record<string, string> = {
     normal: '#A8A878',
@@ -41,28 +42,49 @@ export class PokemonListComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.pokemonService.getPokemonList(0, 20).subscribe({
+    this.translationService.currentLang$.subscribe(lang => {
+      this.loadPokemon(lang);
+    });
+  }
+
+  loadPokemon(language: string): void {
+    this.isLoading = true;
+    this.pokemonService.getPokemonList(0, 20, language).subscribe({
       next: (data) => {
         const pokemonDetails = data.results.map((pokemon: any) => 
-          this.pokemonService.getPokemonByName(pokemon.name)
+          this.pokemonService.getPokemonByName(pokemon.name, language)
         );
         
         forkJoin<any[]>(pokemonDetails).subscribe({
           next: (detailedPokemons) => {
-            this.pokemons = detailedPokemons;
+            this.pokemons = detailedPokemons.map(pokemon => ({
+              ...pokemon,
+              localizedName: this.getLocalizedName(pokemon, language),
+              localizedTypes: this.getLocalizedTypes(pokemon, language)
+            }));
             this.isLoading = false;
           },
           error: (err) => {
-            this.error = 'Fehler beim Laden der Pokémon-Details';
+            this.error = 'Error loading Pokémon details';
             this.isLoading = false;
           }
         });
       },
       error: (err) => {
-        this.error = 'Fehler beim Laden der Pokémon-Liste';
+        this.error = 'Error loading Pokémon list';
         this.isLoading = false;
       }
     });
+  }
+
+  getLocalizedName(pokemon: any, language: string): string {
+    const names = pokemon.speciesInfo?.names || [];
+    const localizedName = names.find((name: any) => name.language.name === language);
+    return localizedName ? localizedName.name : pokemon.name;
+  }
+
+  getLocalizedTypes(pokemon: any, language: string): string[] {
+    return pokemon.types.map((type: any) => type.type.name);
   }
 
   getPrimaryType(pokemon: any): string {

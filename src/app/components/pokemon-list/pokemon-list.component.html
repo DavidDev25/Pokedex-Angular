@@ -1,19 +1,15 @@
-
-
 <div class="pokemon-list">
   <div *ngIf="isLoading">{{ 'POKEMON_LIST.LOADING' | translate }}</div>
   <div *ngIf="error">{{ error }}</div>
   
   @for (pokemon of pokemons; track pokemon.id) {
-    <div class="pokemon-card" 
-         [ngStyle]="{'background-color': getTypeColor(getPrimaryType(pokemon))}"
-         (click)="openModal(pokemon)">
-      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
-      <h3>{{ pokemon.name | titlecase }}</h3>
+    <div class="pokemon-card">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.localizedName" />
+      <h3>{{ pokemon.localizedName }}</h3>
       <div class="types">
-        @for (type of pokemon.types; track type.type.name) {
-          <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
-            {{ type.type.name }}
+        @for (type of pokemon.localizedTypes; track type) {
+          <span class="badge" [ngStyle]="{'background-color': getTypeColor(type)}">
+            {{ type }}
           </span>
         }
       </div>
