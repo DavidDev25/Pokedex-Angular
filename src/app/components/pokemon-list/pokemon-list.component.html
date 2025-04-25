@@ -1,1 +1,16 @@
-<p>pokemon-list works!</p>
+<div class="pokemon-list">
+    @for (pokemon of pokemons; track pokemon.id) {
+      <a [routerLink]="['/pokemon', pokemon.name]" class="pokemon-card">
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+        <h3>{{ pokemon.name | titlecase }}</h3>
+        <div class="types">
+          @for (type of pokemon.types; track type.type.name) {
+            <span class="badge">{{ type.type.name }}</span>
+          }
+        </div>
+      </a>
+    } @empty {
+      <p>No Pokémon found.</p>
+    }
+  </div>
+  
