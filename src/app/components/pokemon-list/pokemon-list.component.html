@@ -1,4 +1,7 @@
 <div class="pokemon-list">
+    <div *ngIf="isLoading">Loading Pokémon...</div>
+    <div *ngIf="error">{{ error }}</div>
+    
     @for (pokemon of pokemons; track pokemon.id) {
       <a [routerLink]="['/pokemon', pokemon.name]" class="pokemon-card">
         <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
@@ -12,5 +15,4 @@
     } @empty {
       <p>No Pokémon found.</p>
     }
-  </div>
-  
+</div>
