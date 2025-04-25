@@ -1,5 +1,10 @@
 import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
+import { inject, Injectable } from "@angular/core";
+
+@Injectable({
+    providedIn: 'root'
+})
 
 export class TranslationService {
     private currentLangSubject = new BehaviorSubject<string>('en');
