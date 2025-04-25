@@ -1,0 +1,13 @@
+{
+  "POKEMON_LIST": {
+    "LOADING": "Loading Pokémon...",
+    "NO_POKEMON": "No Pokémon found",
+    "TYPES": "Types",
+    "ABILITIES": "Abilities",
+    "MOVES": "Moves"
+  },
+  "LANGUAGE": {
+    "SWITCH": "Switch to German",
+    "SWITCH_BACK": "Switch to English"
+  }
+}

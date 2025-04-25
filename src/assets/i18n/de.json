@@ -1,0 +1,13 @@
+{
+  "POKEMON_LIST": {
+    "LOADING": "Pokémon werden geladen...",
+    "NO_POKEMON": "Keine Pokémon gefunden",
+    "TYPES": "Typen",
+    "ABILITIES": "Fähigkeiten",
+    "MOVES": "Attacken"
+  },
+  "LANGUAGE": {
+    "SWITCH": "Zu Deutsch wechseln",
+    "SWITCH_BACK": "Zu Englisch wechseln"
+  }
+}
