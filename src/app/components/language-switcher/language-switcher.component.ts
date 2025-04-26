@@ -12,27 +12,7 @@ import { TranslationService } from '../../services/translation.service';
       {{ (currentLang === 'en' ? 'LANGUAGE.SWITCH' : 'LANGUAGE.SWITCH_BACK') | translate }}
     </button>
   `,
-  styles: [`
-    .language-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 8px 16px;
-      background-color: #3B4CCA;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      transition: background-color 0.3s;
-      z-index: 1001;
-    }
-    
-    .language-btn:hover {
-      background-color: #2a3a99;
-    }
-  `]
+  styleUrls: ['./language-switcher.component.sass'],
 })
 export class LanguageSwitcherComponent implements OnInit {
   currentLang = 'en';
