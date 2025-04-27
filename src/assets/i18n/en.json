@@ -6,7 +6,8 @@
     "ABILITIES": "Abilities",
     "MOVES": "Moves",
     "LOAD_MORE": "Load more Pokémon",
-    "LOADING_MORE": "Loading more..."
+    "LOADING_MORE": "Loading more...",
+    "LOAD_ALL": "Load all Pokémon"
   },
   "LANGUAGE": {
     "SWITCH": "Switch to German",
