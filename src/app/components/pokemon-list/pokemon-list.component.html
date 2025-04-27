@@ -18,6 +18,16 @@
     <p>{{ 'POKEMON_LIST.NO_POKEMON' | translate }}</p>
   }
   
+  <div class="load-more-container">
+    <button 
+      class="load-more-btn" 
+      (click)="loadMorePokemon()" 
+      [disabled]="isLoadingMore || isLoading">
+      <span *ngIf="!isLoadingMore">{{ 'POKEMON_LIST.LOAD_MORE' | translate }}</span>
+      <span *ngIf="isLoadingMore">{{ 'POKEMON_LIST.LOADING_MORE' | translate }}</span>
+    </button>
+  </div>
+  
   @if (selectedPokemon) {
     <div class="modal-backdrop" (click)="closeModal()">
       <div class="modal-content" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(selectedPokemon))}" (click)="$event.stopPropagation()">

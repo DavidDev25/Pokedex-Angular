@@ -123,3 +123,29 @@
     padding: 8px 12px
     border-radius: 5px
     display: inline-block
+
+// Load More Button
+.load-more-container
+  width: 100%
+  display: flex
+  justify-content: center
+  margin: 20px 0 40px 0
+
+.load-more-btn
+  padding: 10px 20px
+  border-radius: 30px
+  font-size: 1rem
+  background-color: #3B4CCA
+  color: white
+  border: none
+  cursor: pointer
+  transition: all 0.3s ease
+  
+  &:hover:not(:disabled)
+    background-color: #2a4580
+    transform: translateY(-2px)
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+  
+  &:disabled
+    opacity: 0.6
+    cursor: not-allowed

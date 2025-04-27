@@ -15,8 +15,12 @@ import { TranslationService } from '../../services/translation.service';
 export class PokemonListComponent implements OnInit {
   pokemons: any[] = [];
   isLoading = true;
+  isLoadingMore = false;
   error: string | null = null;
   selectedPokemon: any = null;
+  currentOffset = 0;
+  limit = 20;
+  currentLang = 'en';
   private pokemonService = inject(PokemonService);
   private translationService = inject(TranslationService);
 
@@ -42,14 +46,25 @@ export class PokemonListComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.loadPokemon(this.currentLang);
+
     this.translationService.currentLang$.subscribe(lang => {
-      this.loadPokemon(lang);
+      this.currentLang = lang;
+      if (this.pokemons.length > 0) {
+        this.updatePokemonLocalization(lang);
+      }
     });
+  }
+  
+  resetAndLoadPokemon(language: string): void {
+    this.currentOffset = 0;
+    this.pokemons = [];
+    this.loadPokemon(language);
   }
 
   loadPokemon(language: string): void {
     this.isLoading = true;
-    this.pokemonService.getPokemonList(0, 20, language).subscribe({
+    this.pokemonService.getPokemonList(this.currentOffset, this.limit, language).subscribe({
       next: (data) => {
         const pokemonDetails = data.results.map((pokemon: any) => 
           this.pokemonService.getPokemonByName(pokemon.name, language)
@@ -63,7 +78,7 @@ export class PokemonListComponent implements OnInit {
             
             forkJoin(localizedRequests).subscribe({
               next: (localizedPokemons) => {
-                this.pokemons = localizedPokemons;
+                this.pokemons = this.pokemons.concat(localizedPokemons);
                 this.isLoading = false;
               },
               error: (err) => {
@@ -81,6 +96,66 @@ export class PokemonListComponent implements OnInit {
       error: (err) => {
         this.error = 'Error loading Pokémon list';
         this.isLoading = false;
+      }
+    });
+  }
+
+  updatePokemonLocalization(language: string): void {
+    this.isLoading = true;
+    const updateRequests = this.pokemons.map(pokemon =>
+      this.pokemonService.getLocalizedPokemonDetails(pokemon, language)
+    );
+
+    forkJoin(updateRequests).subscribe({
+      next: (updatedPokemons) => {
+        this.pokemons = updatedPokemons;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.error = 'Error updating Pokémon localization';
+        this.isLoading = false;
+      }
+    });
+  }
+
+  loadMorePokemon(): void {
+    if (this.isLoadingMore) return;
+    
+    this.isLoadingMore = true;
+    this.currentOffset += this.limit;
+    
+    this.pokemonService.getPokemonList(this.currentOffset, this.limit, this.currentLang).subscribe({
+      next: (data) => {
+        const pokemonDetails = data.results.map((pokemon: any) => 
+          this.pokemonService.getPokemonByName(pokemon.name, this.currentLang)
+        );
+        
+        forkJoin<any[]>(pokemonDetails).subscribe({
+          next: (detailedPokemons) => {
+            const localizedRequests = detailedPokemons.map(pokemon => 
+              this.pokemonService.getLocalizedPokemonDetails(pokemon, this.currentLang)
+            );
+            
+            forkJoin(localizedRequests).subscribe({
+              next: (localizedPokemons) => {
+                this.pokemons = [...this.pokemons, ...localizedPokemons];
+                this.isLoadingMore = false;
+              },
+              error: (err) => {
+                this.error = 'Error loading additional Pokémon details';
+                this.isLoadingMore = false;
+              }
+            });
+          },
+          error: (err) => {
+            this.error = 'Error loading additional Pokémon details';
+            this.isLoadingMore = false;
+          }
+        });
+      },
+      error: (err) => {
+        this.error = 'Error loading additional Pokémon';
+        this.isLoadingMore = false;
       }
     });
   }
