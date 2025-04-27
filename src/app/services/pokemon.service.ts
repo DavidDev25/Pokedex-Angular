@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, switchMap, forkJoin, of } from 'rxjs';
+import { Observable, map, switchMap, forkJoin, of, catchError, from } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PokemonService {
@@ -12,36 +12,61 @@ export class PokemonService {
       .pipe(
         switchMap((data: any) => {
           const pokemonList = data.results;
-          const speciesRequests = pokemonList.map((pokemon: any) =>
-            this.getPokemonSpecies(pokemon.name)
+          const pokemonRequests: Observable<any>[] = pokemonList.map((pokemon: any) =>
+            this.http.get(pokemon.url)
           );
-          return Promise.all(speciesRequests).then(speciesData => {
-            return {
-              ...data,
-              results: pokemonList.map((pokemon: any, index: number) => ({
-                ...pokemon,
-                speciesInfo: speciesData[index]
-              }))
-            };
-          });
+          
+          return forkJoin(pokemonRequests).pipe(
+            switchMap((pokemonData: any[]) => {
+              const speciesRequests = pokemonData.map((pokemon: any) =>
+                this.getPokemonSpeciesFromUrl(pokemon.species.url).catch(() => null)
+              );
+              
+              return from(Promise.all(speciesRequests)).pipe(
+                map(speciesData => {
+                  return {
+                    ...data,
+                    results: pokemonData.map((pokemon: any, index: number) => ({
+                      ...pokemon,
+                      speciesInfo: speciesData[index]
+                    }))
+                  };
+                })
+              );
+            })
+          );
         })
       );
   }
 
   getPokemonByName(name: string, language = 'en'): Observable<any> {
     return this.http.get(`${this.apiUrl}/pokemon/${name}`).pipe(
-      switchMap(pokemonData => 
-        this.getPokemonSpecies(name).then(speciesData => ({
-          ...pokemonData,
-          speciesInfo: speciesData
-        }))
-      )
+      switchMap((pokemonData: any) => 
+        this.getPokemonSpeciesFromUrl(pokemonData.species.url)
+          .then(speciesData => ({
+            ...pokemonData,
+            speciesInfo: speciesData
+          }))
+          .catch(() => ({
+            ...pokemonData,
+            speciesInfo: null
+          }))
+      ),
+      catchError(error => {
+        console.error(`Error fetching Pokémon ${name}:`, error);
+        return of(null);
+      })
     );
   }
 
-  private async getPokemonSpecies(name: string): Promise<any> {
-    const speciesData = await this.http.get(`${this.apiUrl}/pokemon-species/${name}`).toPromise();
-    return speciesData;
+  private async getPokemonSpeciesFromUrl(speciesUrl: string): Promise<any> {
+    try {
+      const speciesData = await this.http.get(speciesUrl).toPromise();
+      return speciesData;
+    } catch (error) {
+      console.warn(`Error fetching species data from ${speciesUrl}`, error);
+      return null;
+    }
   }
 
   getAbilityDetails(abilityUrl: string): Observable<any> {
