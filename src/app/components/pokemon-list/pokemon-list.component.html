@@ -47,6 +47,14 @@
       <div class="modal-content" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(selectedPokemon))}" (click)="$event.stopPropagation()">
         <span class="close-btn" (click)="closeModal()">&times;</span>
         
+        <button class="nav-button prev-button" (click)="navigateToPreviousPokemon(); $event.stopPropagation()">
+          &lsaquo;
+        </button>
+        
+        <button class="nav-button next-button" (click)="navigateToNextPokemon(); $event.stopPropagation()">
+          &rsaquo;
+        </button>
+        
         <div class="modal-header">
           <h2>#{{ selectedPokemon.id }} {{ selectedPokemon.name | titlecase }}</h2>
           <img [src]="selectedPokemon.sprites.front_default" [alt]="selectedPokemon.name" />

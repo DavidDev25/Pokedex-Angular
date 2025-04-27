@@ -210,4 +210,22 @@ export class PokemonListComponent implements OnInit {
   closeModal(): void {
     this.selectedPokemon = null;
   }
+
+  navigateToPreviousPokemon(): void {
+    if (!this.selectedPokemon) return;
+    
+    const currentIndex = this.pokemons.findIndex(p => p.id === this.selectedPokemon.id);
+    if (currentIndex > 0) {
+      this.selectedPokemon = this.pokemons[currentIndex - 1];
+    }
+  }
+
+  navigateToNextPokemon(): void {
+    if (!this.selectedPokemon) return;
+    
+    const currentIndex = this.pokemons.findIndex(p => p.id === this.selectedPokemon.id);
+    if (currentIndex >= 0 && currentIndex < this.pokemons.length - 1) {
+      this.selectedPokemon = this.pokemons[currentIndex + 1];
+    }
+  }
 }
