@@ -44,7 +44,7 @@
             <h3>{{ 'POKEMON_LIST.ABILITIES' | translate }}</h3>
             <ul class="abilities-list">
               @for (ability of selectedPokemon.abilities; track ability.ability.name) {
-                <li>{{ ability.ability.name | titlecase }}</li>
+                <li>{{ ability.localizedName }}</li>
               }
             </ul>
           </div>
@@ -52,8 +52,8 @@
           <div class="section">
             <h3>{{ 'POKEMON_LIST.MOVES' | translate }}</h3>
             <div class="moves-list">
-              @for (move of selectedPokemon.moves.slice(0, 5); track move.move.name) {
-                <span class="move">{{ move.move.name | titlecase }}</span>
+              @for (move of selectedPokemon.localizedMoves; track move.move.name) {
+                <span class="move">{{ move.localizedName }}</span>
               }
             </div>
           </div>

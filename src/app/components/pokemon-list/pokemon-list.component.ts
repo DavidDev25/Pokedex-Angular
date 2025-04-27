@@ -57,12 +57,20 @@ export class PokemonListComponent implements OnInit {
         
         forkJoin<any[]>(pokemonDetails).subscribe({
           next: (detailedPokemons) => {
-            this.pokemons = detailedPokemons.map(pokemon => ({
-              ...pokemon,
-              localizedName: this.getLocalizedName(pokemon, language),
-              localizedTypes: this.getLocalizedTypes(pokemon, language)
-            }));
-            this.isLoading = false;
+            const localizedRequests = detailedPokemons.map(pokemon => 
+              this.pokemonService.getLocalizedPokemonDetails(pokemon, language)
+            );
+            
+            forkJoin(localizedRequests).subscribe({
+              next: (localizedPokemons) => {
+                this.pokemons = localizedPokemons;
+                this.isLoading = false;
+              },
+              error: (err) => {
+                this.error = 'Error loading Pokémon localized details';
+                this.isLoading = false;
+              }
+            });
           },
           error: (err) => {
             this.error = 'Error loading Pokémon details';
