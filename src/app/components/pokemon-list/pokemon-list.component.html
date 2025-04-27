@@ -3,7 +3,7 @@
   <div *ngIf="error">{{ error }}</div>
   
   @for (pokemon of pokemons; track pokemon.id) {
-    <div class="pokemon-card" (click)="openModal(pokemon)">
+    <div class="pokemon-card" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(pokemon))}" (click)="openModal(pokemon)">
       <img [src]="pokemon.sprites.front_default" [alt]="pokemon.localizedName" />
       <h3>{{ pokemon.localizedName }}</h3>
       <div class="types">
