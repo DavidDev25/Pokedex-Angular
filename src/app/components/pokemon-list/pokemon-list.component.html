@@ -1,5 +1,9 @@
 <div class="pokemon-list">
-  <div *ngIf="isLoading">{{ 'POKEMON_LIST.LOADING' | translate }}</div>
+  <div *ngIf="isLoading" class="loading-container">
+    <img src="assets/images/pokeball.png" alt="Loading" class="pokeball">
+    <div class="loading-text">{{ 'POKEMON_LIST.LOADING' | translate }}</div>
+  </div>
+  
   <div *ngIf="error">{{ error }}</div>
   
   @for (pokemon of pokemons; track pokemon.id) {
@@ -18,13 +22,23 @@
     <p>{{ 'POKEMON_LIST.NO_POKEMON' | translate }}</p>
   }
   
-  <div class="load-more-container">
+  <div class="button-container">
     <button 
       class="load-more-btn" 
       (click)="loadMorePokemon()" 
       [disabled]="isLoadingMore || isLoading">
       <span *ngIf="!isLoadingMore">{{ 'POKEMON_LIST.LOAD_MORE' | translate }}</span>
-      <span *ngIf="isLoadingMore">{{ 'POKEMON_LIST.LOADING_MORE' | translate }}</span>
+      <span *ngIf="isLoadingMore" class="loading-indicator">
+        <img src="assets/images/pokeball.png" alt="Loading" class="pokeball-small">
+        {{ 'POKEMON_LIST.LOADING_MORE' | translate }}
+      </span>
+    </button>
+    
+    <button 
+      class="load-all-btn" 
+      (click)="loadAllPokemon()" 
+      [disabled]="isLoading || isLoadingMore">
+      {{ 'POKEMON_LIST.LOAD_ALL' | translate }}
     </button>
   </div>
   

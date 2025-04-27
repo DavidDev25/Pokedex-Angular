@@ -62,6 +62,18 @@ export class PokemonListComponent implements OnInit {
     this.loadPokemon(language);
   }
 
+  private scrollToLastPokemon(): void {
+    setTimeout(() => {
+      if (this.pokemons.length > 0) {
+        const pokemonCards = document.querySelectorAll('.pokemon-card');
+        if (pokemonCards.length > 0) {
+          const lastCard = pokemonCards[pokemonCards.length - 1];
+          lastCard.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+      }
+    }, 100); 
+  }
+
   loadPokemon(language: string): void {
     this.isLoading = true;
     this.pokemonService.getPokemonList(this.currentOffset, this.limit, language).subscribe({
@@ -80,6 +92,7 @@ export class PokemonListComponent implements OnInit {
               next: (localizedPokemons) => {
                 this.pokemons = this.pokemons.concat(localizedPokemons);
                 this.isLoading = false;
+                this.scrollToLastPokemon(); 
               },
               error: (err) => {
                 this.error = 'Error loading Pokémon localized details';
@@ -140,6 +153,7 @@ export class PokemonListComponent implements OnInit {
               next: (localizedPokemons) => {
                 this.pokemons = [...this.pokemons, ...localizedPokemons];
                 this.isLoadingMore = false;
+                this.scrollToLastPokemon(); // Add auto-scroll
               },
               error: (err) => {
                 this.error = 'Error loading additional Pokémon details';
@@ -158,6 +172,14 @@ export class PokemonListComponent implements OnInit {
         this.isLoadingMore = false;
       }
     });
+  }
+
+  loadAllPokemon(): void {
+    this.isLoading = true;
+    this.currentOffset = 0;
+    this.limit = 1000;
+    this.pokemons = []; 
+    this.loadPokemon(this.currentLang); 
   }
 
   getLocalizedName(pokemon: any, language: string): string {
