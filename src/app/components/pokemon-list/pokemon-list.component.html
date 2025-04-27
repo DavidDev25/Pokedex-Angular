@@ -9,7 +9,7 @@
       <div class="types">
         @for (type of pokemon.localizedTypes; track type) {
           <span class="badge" [ngStyle]="{'background-color': getTypeColor(type)}">
-            {{ type }}
+            {{ 'TYPES.' + type | translate }}
           </span>
         }
       </div>
@@ -34,7 +34,7 @@
             <div class="types">
               @for (type of selectedPokemon.types; track type.type.name) {
                 <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
-                  {{ type.type.name }}
+                  {{ 'TYPES.' + type.type.name | translate }}
                 </span>
               }
             </div>
