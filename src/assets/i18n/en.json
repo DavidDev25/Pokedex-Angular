@@ -4,7 +4,9 @@
     "NO_POKEMON": "No Pokémon found",
     "TYPES": "Types",
     "ABILITIES": "Abilities",
-    "MOVES": "Moves"
+    "MOVES": "Moves",
+    "LOAD_MORE": "Load more Pokémon",
+    "LOADING_MORE": "Loading more..."
   },
   "LANGUAGE": {
     "SWITCH": "Switch to German",

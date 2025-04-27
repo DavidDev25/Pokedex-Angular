@@ -4,7 +4,9 @@
     "NO_POKEMON": "Keine Pokémon gefunden",
     "TYPES": "Typen",
     "ABILITIES": "Fähigkeiten",
-    "MOVES": "Attacken"
+    "MOVES": "Attacken",
+    "LOAD_MORE": "Mehr Pokémon laden",
+    "LOADING_MORE": "Lade mehr..."
   },
   "LANGUAGE": {
     "SWITCH": "Zu Deutsch wechseln",
