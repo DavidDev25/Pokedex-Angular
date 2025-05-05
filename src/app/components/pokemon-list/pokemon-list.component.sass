@@ -58,15 +58,50 @@
   justify-content: center
   align-items: center
   z-index: 1000
+  padding: 10px
 
 .modal-content
   position: relative
-  width: 90%
-  max-width: 500px
+  width: 320px
+  max-height: 80vh
+  overflow-y: auto
   border-radius: 15px
-  padding: 25px
+  padding: 20px
   color: white
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3)
+  @media (min-width: 768px)
+    width: 380px
+    padding: 25px
+
+.nav-button
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  background-color: rgba(255, 255, 255, 0.5)
+  color: white
+  border: none
+  font-size: 2rem
+  padding: 0
+  cursor: pointer
+  border-radius: 50%
+  z-index: 1001
+  width: 40px
+  height: 40px
+  display: flex
+  align-items: center
+  justify-content: center
+
+.prev-button
+  left: -20px
+  
+  @media (max-width: 350px)
+    left: -15px
+
+.next-button
+  right: -20px
+  
+  @media (max-width: 350px)
+    right: -15px
 
 .close-btn
   position: absolute
@@ -76,6 +111,12 @@
   font-weight: bold
   color: white
   cursor: pointer
+  z-index: 10
+  width: 30px
+  height: 30px
+  display: flex
+  align-items: center
+  justify-content: center
 
 .modal-header
   display: flex
@@ -86,13 +127,22 @@
   h2
     margin: 0 0 15px 0
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5)
+    font-size: 1.2rem
+    text-align: center
+    
+    @media (min-width: 768px)
+      font-size: 1.5rem
     
   img
-    width: 150px
-    height: 150px
+    width: 120px
+    height: 120px
     background-color: rgba(255, 255, 255, 0.6)
     border-radius: 50%
     padding: 10px
+    
+    @media (min-width: 768px)
+      width: 150px
+      height: 150px
 
 .section
   margin-bottom: 20px
@@ -207,28 +257,3 @@
     transform: rotate(0deg)
   100%
     transform: rotate(360deg)
-
-
-.nav-button
-  position: absolute
-  top: 110%
-  transform: translateY(-50%)
-  background-color: rgba(255, 255, 255, 0.2)
-  color: white
-  border: none
-  font-size: 2rem
-  padding: 10px 15px
-  cursor: pointer
-  border-radius: 50%
-  z-index: 1001
-  width: 50px
-  height: 50px
-  display: flex
-  align-items: center
-  justify-content: center
-
-.prev-button
-  left: 10px
-
-.next-button
-  right: 10px

@@ -6,7 +6,7 @@
   
   <div *ngIf="error">{{ error }}</div>
   
-  @for (pokemon of pokemons; track pokemon.id) {
+  @for (pokemon of filteredPokemons; track pokemon.id) {
     <div class="pokemon-card" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(pokemon))}" (click)="openModal(pokemon)">
       <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
       <h3>{{ pokemon.name | titlecase }}</h3>

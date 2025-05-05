@@ -1,7 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
+import { SearchService } from '../../services/search.service';
 import { CommonModule } from '@angular/common';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,8 +11,12 @@ import { forkJoin } from 'rxjs';
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.sass'] 
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, OnDestroy {
+  searchTerm: string = '';
+  private searchSubscription!: Subscription;
+  
   pokemons: any[] = [];
+  filteredPokemons: any[] = [];
   isLoading = true;
   isLoadingMore = false;
   error: string | null = null;
@@ -19,6 +24,7 @@ export class PokemonListComponent implements OnInit {
   currentOffset = 0;
   limit = 20;
   private pokemonService = inject(PokemonService);
+  private searchService = inject(SearchService);
 
   typesColorMap: Record<string, string> = {
     normal: '#A8A878',
@@ -43,6 +49,30 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemon();
+    this.searchSubscription = this.searchService.currentSearchTerm$.subscribe(term => {
+      this.searchTerm = term;
+      this.filterPokemons();
+    });
+  }
+  
+  ngOnDestroy(): void {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+  }
+  
+  filterPokemons(): void {
+    if (!this.searchTerm || this.searchTerm.trim() === '') {
+      this.filteredPokemons = [...this.pokemons];
+      return;
+    }
+    
+    const term = this.searchTerm.toLowerCase().trim();
+    this.filteredPokemons = this.pokemons.filter(pokemon => 
+      pokemon.name.toLowerCase().includes(term) || 
+      pokemon.id.toString().includes(term) ||
+      pokemon.types.some((type: any) => type.type.name.toLowerCase().includes(term))
+    );
   }
 
   loadPokemon(): void {
@@ -56,6 +86,7 @@ export class PokemonListComponent implements OnInit {
         forkJoin<any[]>(pokemonDetails).subscribe({
           next: (detailedPokemons) => {
             this.pokemons = this.pokemons.concat(detailedPokemons);
+            this.filterPokemons();
             this.isLoading = false;
           },
           error: (err) => {
@@ -86,6 +117,7 @@ export class PokemonListComponent implements OnInit {
         forkJoin<any[]>(pokemonDetails).subscribe({
           next: (detailedPokemons) => {
             this.pokemons = [...this.pokemons, ...detailedPokemons];
+            this.filterPokemons();
             this.isLoadingMore = false;
           },
           error: (err) => {
@@ -104,7 +136,7 @@ export class PokemonListComponent implements OnInit {
   loadAllPokemon(): void {
     this.isLoading = true;
     this.currentOffset = 0;
-    this.limit = 1000;
+    this.limit = 1025;
     this.pokemons = []; 
     this.loadPokemon(); 
   }
