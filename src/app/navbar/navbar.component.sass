@@ -1,0 +1,105 @@
+.navbar
+  background-color: #E3350D 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+  padding: 10px 0
+  position: sticky
+  top: 0
+  z-index: 1000
+
+.navbar-container
+  display: flex
+  justify-content: space-between
+  align-items: center
+  max-width: 1200px
+  margin: 0 auto
+  padding: 0 20px
+  flex-wrap: wrap
+  
+  @media (max-width: 768px)
+    flex-direction: column
+    gap: 10px
+
+.navbar-brand
+  display: flex
+  align-items: center
+  gap: 10px
+
+.pokeball-logo
+  width: 30px
+  height: 30px
+  animation: gentle-bounce 3s infinite ease-in-out
+
+.navbar-title
+  color: white
+  margin: 0
+  font-size: 1.8rem
+  font-weight: bold
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3)
+
+.navbar-links
+  display: flex
+  gap: 20px
+  
+  @media (max-width: 768px)
+    display: none
+
+.navbar-link
+  color: white
+  text-decoration: none
+  font-weight: 500
+  padding: 5px 10px
+  border-radius: 20px
+  transition: all 0.3s ease
+  
+  &:hover
+    background-color: rgba(255, 255, 255, 0.2)
+  
+  &.active
+    background-color: rgba(255, 255, 255, 0.25)
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+
+.search-container
+  display: flex
+  align-items: center
+  background-color: rgba(255, 255, 255, 0.2)
+  border-radius: 20px
+  padding: 5px 10px
+  
+  @media (max-width: 768px)
+    width: 100%
+    max-width: 300px
+
+.search-input
+  background: transparent
+  border: none
+  color: white
+  padding: 5px 10px
+  outline: none
+  width: 150px
+  
+  &::placeholder
+    color: rgba(255, 255, 255, 0.7)
+
+.search-button
+  background: transparent
+  border: none
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+
+.search-icon
+  width: 20px
+  height: 20px
+  opacity: 0.8
+  transition: all 0.3s ease
+  
+  &:hover
+    opacity: 1
+    transform: rotate(15deg)
+
+@keyframes gentle-bounce
+  0%, 100%
+    transform: translateY(0)
+  50%
+    transform: translateY(-3px)
