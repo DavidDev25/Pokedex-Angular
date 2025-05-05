@@ -5,11 +5,17 @@
       <h1 class="navbar-title">Pokédex</h1>
     </div>
     <div class="navbar-links">
-      <a href="#" class="navbar-link active">All Pokémon</a>
+      <a class="navbar-link active">All Pokémon</a>
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Search Pokémon..." class="search-input">
-      <button class="search-button">
+      <input 
+        type="text" 
+        placeholder="Search Pokémon..." 
+        class="search-input"
+        [(ngModel)]="searchTerm"
+        (input)="onSearchInput()"
+      >
+      <button class="search-button" (click)="onSearch()">
         <img src="assets/images/pokeball.png" alt="Search" class="search-icon">
       </button>
     </div>
