@@ -4,10 +4,16 @@ import { NavbarComponent } from "./navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
 export class AppComponent {
   title = 'Pokedex-Angular';
+  searchTerm: string = '';
+
+  handleSearch(term: string): void {
+    this.searchTerm = term;
+  }
 }
