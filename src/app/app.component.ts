@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LanguageSwitcherComponent } from "./components/language-switcher/language-switcher.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LanguageSwitcherComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })

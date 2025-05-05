@@ -2,13 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
-import { TranslateModule } from '@ngx-translate/core';
-import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true, 
-  imports: [CommonModule, TranslateModule,], 
+  imports: [CommonModule], 
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.sass'] 
 })
@@ -20,9 +18,7 @@ export class PokemonListComponent implements OnInit {
   selectedPokemon: any = null;
   currentOffset = 0;
   limit = 20;
-  currentLang = 'en';
   private pokemonService = inject(PokemonService);
-  private translationService = inject(TranslationService);
 
   typesColorMap: Record<string, string> = {
     normal: '#A8A878',
@@ -46,59 +42,21 @@ export class PokemonListComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.loadPokemon(this.currentLang);
-
-    this.translationService.currentLang$.subscribe(lang => {
-      this.currentLang = lang;
-      if (this.pokemons.length > 0) {
-        this.updatePokemonLocalization(lang);
-      }
-    });
-  }
-  
-  resetAndLoadPokemon(language: string): void {
-    this.currentOffset = 0;
-    this.pokemons = [];
-    this.loadPokemon(language);
+    this.loadPokemon();
   }
 
-  private scrollToLastPokemon(): void {
-    setTimeout(() => {
-      if (this.pokemons.length > 0) {
-        const pokemonCards = document.querySelectorAll('.pokemon-card');
-        if (pokemonCards.length > 0) {
-          const lastCard = pokemonCards[pokemonCards.length - 1];
-          lastCard.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-      }
-    }, 100); 
-  }
-
-  loadPokemon(language: string): void {
+  loadPokemon(): void {
     this.isLoading = true;
-    this.pokemonService.getPokemonList(this.currentOffset, this.limit, language).subscribe({
+    this.pokemonService.getPokemonList(this.currentOffset, this.limit).subscribe({
       next: (data) => {
         const pokemonDetails = data.results.map((pokemon: any) => 
-          this.pokemonService.getPokemonByName(pokemon.name, language)
+          this.pokemonService.getPokemonByName(pokemon.name)
         );
         
         forkJoin<any[]>(pokemonDetails).subscribe({
           next: (detailedPokemons) => {
-            const localizedRequests = detailedPokemons.map(pokemon => 
-              this.pokemonService.getLocalizedPokemonDetails(pokemon, language)
-            );
-            
-            forkJoin(localizedRequests).subscribe({
-              next: (localizedPokemons) => {
-                this.pokemons = this.pokemons.concat(localizedPokemons);
-                this.isLoading = false;
-                this.scrollToLastPokemon(); 
-              },
-              error: (err) => {
-                this.error = 'Error loading Pokémon localized details';
-                this.isLoading = false;
-              }
-            });
+            this.pokemons = this.pokemons.concat(detailedPokemons);
+            this.isLoading = false;
           },
           error: (err) => {
             this.error = 'Error loading Pokémon details';
@@ -113,53 +71,22 @@ export class PokemonListComponent implements OnInit {
     });
   }
 
-  updatePokemonLocalization(language: string): void {
-    this.isLoading = true;
-    const updateRequests = this.pokemons.map(pokemon =>
-      this.pokemonService.getLocalizedPokemonDetails(pokemon, language)
-    );
-
-    forkJoin(updateRequests).subscribe({
-      next: (updatedPokemons) => {
-        this.pokemons = updatedPokemons;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.error = 'Error updating Pokémon localization';
-        this.isLoading = false;
-      }
-    });
-  }
-
   loadMorePokemon(): void {
     if (this.isLoadingMore) return;
     
     this.isLoadingMore = true;
     this.currentOffset += this.limit;
     
-    this.pokemonService.getPokemonList(this.currentOffset, this.limit, this.currentLang).subscribe({
+    this.pokemonService.getPokemonList(this.currentOffset, this.limit).subscribe({
       next: (data) => {
         const pokemonDetails = data.results.map((pokemon: any) => 
-          this.pokemonService.getPokemonByName(pokemon.name, this.currentLang)
+          this.pokemonService.getPokemonByName(pokemon.name)
         );
         
         forkJoin<any[]>(pokemonDetails).subscribe({
           next: (detailedPokemons) => {
-            const localizedRequests = detailedPokemons.map(pokemon => 
-              this.pokemonService.getLocalizedPokemonDetails(pokemon, this.currentLang)
-            );
-            
-            forkJoin(localizedRequests).subscribe({
-              next: (localizedPokemons) => {
-                this.pokemons = [...this.pokemons, ...localizedPokemons];
-                this.isLoadingMore = false;
-                this.scrollToLastPokemon(); // Add auto-scroll
-              },
-              error: (err) => {
-                this.error = 'Error loading additional Pokémon details';
-                this.isLoadingMore = false;
-              }
-            });
+            this.pokemons = [...this.pokemons, ...detailedPokemons];
+            this.isLoadingMore = false;
           },
           error: (err) => {
             this.error = 'Error loading additional Pokémon details';
@@ -179,17 +106,7 @@ export class PokemonListComponent implements OnInit {
     this.currentOffset = 0;
     this.limit = 1000;
     this.pokemons = []; 
-    this.loadPokemon(this.currentLang); 
-  }
-
-  getLocalizedName(pokemon: any, language: string): string {
-    const names = pokemon.speciesInfo?.names || [];
-    const localizedName = names.find((name: any) => name.language.name === language);
-    return localizedName ? localizedName.name : pokemon.name;
-  }
-
-  getLocalizedTypes(pokemon: any, language: string): string[] {
-    return pokemon.types.map((type: any) => type.type.name);
+    this.loadPokemon(); 
   }
 
   getPrimaryType(pokemon: any): string {

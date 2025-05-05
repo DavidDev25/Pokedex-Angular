@@ -1,25 +1,25 @@
 <div class="pokemon-list">
   <div *ngIf="isLoading" class="loading-container">
     <img src="assets/images/pokeball.png" alt="Loading" class="pokeball">
-    <div class="loading-text">{{ 'POKEMON_LIST.LOADING' | translate }}</div>
+    <div class="loading-text">Loading Pokémon...</div>
   </div>
   
   <div *ngIf="error">{{ error }}</div>
   
   @for (pokemon of pokemons; track pokemon.id) {
     <div class="pokemon-card" [ngStyle]="{'background-color': getTypeColor(getPrimaryType(pokemon))}" (click)="openModal(pokemon)">
-      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.localizedName" />
-      <h3>{{ pokemon.localizedName }}</h3>
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+      <h3>{{ pokemon.name | titlecase }}</h3>
       <div class="types">
-        @for (type of pokemon.localizedTypes; track type) {
-          <span class="badge" [ngStyle]="{'background-color': getTypeColor(type)}">
-            {{ 'TYPES.' + type | translate }}
+        @for (type of pokemon.types; track type.type.name) {
+          <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
+            {{ type.type.name | titlecase }}
           </span>
         }
       </div>
     </div>
   } @empty {
-    <p>{{ 'POKEMON_LIST.NO_POKEMON' | translate }}</p>
+    <p>No Pokémon found</p>
   }
   
   <div class="button-container">
@@ -27,10 +27,10 @@
       class="load-more-btn" 
       (click)="loadMorePokemon()" 
       [disabled]="isLoadingMore || isLoading">
-      <span *ngIf="!isLoadingMore">{{ 'POKEMON_LIST.LOAD_MORE' | translate }}</span>
+      <span *ngIf="!isLoadingMore">Load more Pokémon</span>
       <span *ngIf="isLoadingMore" class="loading-indicator">
         <img src="assets/images/pokeball.png" alt="Loading" class="pokeball-small">
-        {{ 'POKEMON_LIST.LOADING_MORE' | translate }}
+        Loading more...
       </span>
     </button>
     
@@ -38,7 +38,7 @@
       class="load-all-btn" 
       (click)="loadAllPokemon()" 
       [disabled]="isLoading || isLoadingMore">
-      {{ 'POKEMON_LIST.LOAD_ALL' | translate }}
+      Load all Pokémon
     </button>
   </div>
   
@@ -62,30 +62,30 @@
         
         <div class="modal-body">
           <div class="section">
-            <h3>{{ 'POKEMON_LIST.TYPES' | translate }}</h3>
+            <h3>Types</h3>
             <div class="types">
               @for (type of selectedPokemon.types; track type.type.name) {
                 <span class="badge" [ngStyle]="{'background-color': getTypeColor(type.type.name)}">
-                  {{ 'TYPES.' + type.type.name | translate }}
+                  {{ type.type.name | titlecase }}
                 </span>
               }
             </div>
           </div>
           
           <div class="section">
-            <h3>{{ 'POKEMON_LIST.ABILITIES' | translate }}</h3>
+            <h3>Abilities</h3>
             <ul class="abilities-list">
               @for (ability of selectedPokemon.abilities; track ability.ability.name) {
-                <li>{{ ability.localizedName }}</li>
+                <li>{{ ability.ability.name | titlecase }}</li>
               }
             </ul>
           </div>
           
           <div class="section">
-            <h3>{{ 'POKEMON_LIST.MOVES' | translate }}</h3>
+            <h3>Moves</h3>
             <div class="moves-list">
-              @for (move of selectedPokemon.localizedMoves; track move.move.name) {
-                <span class="move">{{ move.localizedName }}</span>
+              @for (move of selectedPokemon.moves.slice(0, 5); track move.move.name) {
+                <span class="move">{{ move.move.name | titlecase }}</span>
               }
             </div>
           </div>
