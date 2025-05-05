@@ -134,6 +134,8 @@ export class PokemonListComponent implements OnInit {
     const currentIndex = this.pokemons.findIndex(p => p.id === this.selectedPokemon.id);
     if (currentIndex > 0) {
       this.selectedPokemon = this.pokemons[currentIndex - 1];
+    } else if (currentIndex === 0) {
+      this.selectedPokemon = this.pokemons[this.pokemons.length - 1];
     }
   }
 
@@ -141,8 +143,12 @@ export class PokemonListComponent implements OnInit {
     if (!this.selectedPokemon) return;
     
     const currentIndex = this.pokemons.findIndex(p => p.id === this.selectedPokemon.id);
-    if (currentIndex >= 0 && currentIndex < this.pokemons.length - 1) {
-      this.selectedPokemon = this.pokemons[currentIndex + 1];
+    if (currentIndex >= 0) {
+      if (currentIndex < this.pokemons.length - 1) {
+        this.selectedPokemon = this.pokemons[currentIndex + 1];
+      } else { 
+        this.selectedPokemon = this.pokemons[0];
+      }
     }
   }
 }
