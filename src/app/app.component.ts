@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
+import { SearchService } from './services/search.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,10 @@ import { NavbarComponent } from "./navbar/navbar.component";
 })
 export class AppComponent {
   title = 'Pokedex-Angular';
-  searchTerm: string = '';
+  
+  constructor(private searchService: SearchService) {}
 
   handleSearch(term: string): void {
-    this.searchTerm = term;
+    this.searchService.updateSearchTerm(term);
   }
 }
