@@ -120,6 +120,16 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Navigation bar component for the Pokedex application.</p>
+<p>This component displays the application header and provides search functionality
+that allows users to filter Pokémon in real-time. It emits search events to
+parent components when the user types or submits a search.</p>
+
+    </p>
 
 
 
@@ -260,9 +270,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/navbar/navbar.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/navbar/navbar.component.ts:24</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitter that sends search terms to parent components.
+Emits the current search value when a user types or submits a search.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -293,14 +310,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/navbar/navbar.component.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/navbar/navbar.component.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles search form submission events.
+Emits the current search term to parent components.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -330,14 +350,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/navbar/navbar.component.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/navbar/navbar.component.ts:44</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles input events while the user is typing in the search box.
+Enables real-time search filtering by emitting the search term on each keystroke.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -377,10 +400,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/navbar/navbar.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/navbar/navbar.component.ts:30</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The current search term entered by the user.
+This is bound to the search input field in the template.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -394,6 +424,13 @@
 import { FormsModule } from &#x27;@angular/forms&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
+/**
+ * Navigation bar component for the Pokedex application.
+ * 
+ * This component displays the application header and provides search functionality
+ * that allows users to filter Pokémon in real-time. It emits search events to
+ * parent components when the user types or submits a search.
+ */
 @Component({
   selector: &#x27;app-navbar&#x27;,
   standalone: true,
@@ -402,13 +439,30 @@ import { CommonModule } from &#x27;@angular/common&#x27;;
   styleUrl: &#x27;./navbar.component.sass&#x27;
 })
 export class NavbarComponent {
+  /**
+   * Event emitter that sends search terms to parent components.
+   * Emits the current search value when a user types or submits a search.
+   */
   @Output() search &#x3D; new EventEmitter&lt;string&gt;();
+  
+  /**
+   * The current search term entered by the user.
+   * This is bound to the search input field in the template.
+   */
   searchTerm: string &#x3D; &#x27;&#x27;;
 
+  /**
+   * Handles search form submission events.
+   * Emits the current search term to parent components.
+   */
   onSearch(): void {
     this.search.emit(this.searchTerm);
   }
   
+  /**
+   * Handles input events while the user is typing in the search box.
+   * Enables real-time search filtering by emitting the search term on each keystroke.
+   */
   onSearchInput(): void {
     this.search.emit(this.searchTerm);
   }

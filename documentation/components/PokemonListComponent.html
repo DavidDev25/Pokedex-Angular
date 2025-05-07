@@ -124,6 +124,21 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component responsible for displaying the list of Pokémon.</p>
+<p>This component provides functionality for:</p>
+<ul>
+<li>Displaying a paginated list of Pokémon</li>
+<li>Filtering Pokémon based on search input</li>
+<li>Loading more Pokémon on demand</li>
+<li>Displaying detailed information about a selected Pokémon</li>
+<li>Navigating between Pokémon in the detail view</li>
+</ul>
+
+    </p>
 
 
     <p class="comment">
@@ -335,14 +350,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="159"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:159</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:272</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Closes the detail modal</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -372,14 +389,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:138</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Filters the Pokémon list based on the current search term
+Matches against Pokémon name, ID, or type</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -409,14 +429,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="144"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:144</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="243"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:243</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves the primary type of a Pokémon</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -427,6 +449,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -441,6 +464,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The Pokémon object to extract the type from</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -450,7 +479,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The name of the first type, or &#39;normal&#39; if no types exist</p>
+
                             </div>
                 </td>
             </tr>
@@ -476,14 +506,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="151"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:151</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="256"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:256</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Gets the color associated with a Pokémon type</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -494,6 +526,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -508,6 +541,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The type name to get the color for</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -517,7 +556,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The hex color code for the specified type</p>
+
                             </div>
                 </td>
             </tr>
@@ -543,14 +583,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="136"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:136</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="229"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:229</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Loads all available Pokémon data at once
+Resets current data and pagination settings</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -580,14 +623,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:194</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Loads additional Pokémon data when the user requests more</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -617,14 +662,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:155</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Loads initial batch of Pokémon data from the API</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -654,14 +701,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="174"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:174</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="295"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:295</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the next Pokémon in the list when viewing details
+Wraps around to the beginning of the list if at the end</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -691,14 +741,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="163"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:163</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="280"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:280</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the previous Pokémon in the list when viewing details
+Wraps around to the end of the list if at the beginning</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -728,14 +781,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:128</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Cleans up subscriptions when the component is destroyed</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -765,14 +820,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:117</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the component by loading Pokémon data and subscribing to search changes</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -802,14 +859,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="155"
-                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:155</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:265</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Opens the detail modal for a selected Pokémon</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -820,6 +879,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -834,6 +894,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The Pokémon to display in the modal</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -879,10 +945,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:70</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current offset for pagination</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -910,10 +982,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:59</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error message to display if loading fails</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -941,10 +1019,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:44</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array containing Pokémon filtered by search term</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -966,10 +1050,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:49</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Flag indicating if initial Pokémon data is loading</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -991,10 +1081,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:54</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Flag indicating if additional Pokémon data is being loaded</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1022,10 +1118,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:75</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Number of Pokémon to load per request</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1053,10 +1155,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:39</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Array containing all loaded Pokémon data</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1079,10 +1187,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:81</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Service for retrieving Pokémon data</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1105,10 +1219,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:87</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Service for managing search functionality</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1132,10 +1252,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Subscription to the search service for cleanup on component destruction</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1163,10 +1289,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:28</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current search term used for filtering Pokémon</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1194,10 +1326,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:64</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected Pokémon for detailed view</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1244,10 +1382,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/pokemon-list/pokemon-list.component.ts:93</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mapping of Pokémon types to their corresponding colors
+Used for styling Pokémon cards and type badges</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1263,6 +1408,16 @@ import { SearchService } from &#x27;../../services/search.service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { forkJoin, Subscription } from &#x27;rxjs&#x27;;
 
+/**
+ * Component responsible for displaying the list of Pokémon.
+ * 
+ * This component provides functionality for:
+ * - Displaying a paginated list of Pokémon
+ * - Filtering Pokémon based on search input
+ * - Loading more Pokémon on demand
+ * - Displaying detailed information about a selected Pokémon
+ * - Navigating between Pokémon in the detail view
+ */
 @Component({
   selector: &#x27;app-pokemon-list&#x27;,
   standalone: true, 
@@ -1271,20 +1426,74 @@ import { forkJoin, Subscription } from &#x27;rxjs&#x27;;
   styleUrls: [&#x27;./pokemon-list.component.sass&#x27;] 
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
+  /**
+   * Current search term used for filtering Pokémon
+   */
   searchTerm: string &#x3D; &#x27;&#x27;;
+  
+  /**
+   * Subscription to the search service for cleanup on component destruction
+   * @private
+   */
   private searchSubscription!: Subscription;
   
+  /**
+   * Array containing all loaded Pokémon data
+   */
   pokemons: any[] &#x3D; [];
+  
+  /**
+   * Array containing Pokémon filtered by search term
+   */
   filteredPokemons: any[] &#x3D; [];
+  
+  /**
+   * Flag indicating if initial Pokémon data is loading
+   */
   isLoading &#x3D; true;
+  
+  /**
+   * Flag indicating if additional Pokémon data is being loaded
+   */
   isLoadingMore &#x3D; false;
+  
+  /**
+   * Error message to display if loading fails
+   */
   error: string | null &#x3D; null;
+  
+  /**
+   * Currently selected Pokémon for detailed view
+   */
   selectedPokemon: any &#x3D; null;
+  
+  /**
+   * Current offset for pagination
+   * @private
+   */
   currentOffset &#x3D; 0;
+  
+  /**
+   * Number of Pokémon to load per request
+   */
   limit &#x3D; 20;
+  
+  /**
+   * Service for retrieving Pokémon data
+   * @private
+   */
   private pokemonService &#x3D; inject(PokemonService);
+  
+  /**
+   * Service for managing search functionality
+   * @private
+   */
   private searchService &#x3D; inject(SearchService);
 
+  /**
+   * Mapping of Pokémon types to their corresponding colors
+   * Used for styling Pokémon cards and type badges
+   */
   typesColorMap: Record&lt;string, string&gt; &#x3D; {
     normal: &#x27;#A8A878&#x27;,
     fire: &#x27;#F08030&#x27;,
@@ -1306,6 +1515,9 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     fairy: &#x27;#EE99AC&#x27;
   };
 
+  /**
+   * Initializes the component by loading Pokémon data and subscribing to search changes
+   */
   ngOnInit(): void {
     this.loadPokemon();
     this.searchSubscription &#x3D; this.searchService.currentSearchTerm$.subscribe(term &#x3D;&gt; {
@@ -1314,12 +1526,19 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     });
   }
   
+  /**
+   * Cleans up subscriptions when the component is destroyed
+   */
   ngOnDestroy(): void {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }
   }
   
+  /**
+   * Filters the Pokémon list based on the current search term
+   * Matches against Pokémon name, ID, or type
+   */
   filterPokemons(): void {
     if (!this.searchTerm || this.searchTerm.trim() &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
       this.filteredPokemons &#x3D; [...this.pokemons];
@@ -1334,17 +1553,29 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Loads initial batch of Pokémon data from the API
+   */
   loadPokemon(): void {
     this.isLoading &#x3D; true;
     this.pokemonService.getPokemonList(this.currentOffset, this.limit).subscribe({
       next: (data) &#x3D;&gt; {
-        const pokemonDetails &#x3D; data.results.map((pokemon: any) &#x3D;&gt; 
+        // Die Wrapper-Antwort enthält eine results-Eigenschaft mit den Pokemon-Daten
+        if (!data || !data.results || !Array.isArray(data.results)) {
+          this.error &#x3D; &#x27;Unerwartete API-Antwort&#x27;;
+          this.isLoading &#x3D; false;
+          return;
+        }
+        
+        const detailRequests &#x3D; data.results.map((pokemon: any) &#x3D;&gt; 
           this.pokemonService.getPokemonByName(pokemon.name)
         );
         
-        forkJoin&lt;any[]&gt;(pokemonDetails).subscribe({
+        forkJoin&lt;any[]&gt;(detailRequests).subscribe({
           next: (detailedPokemons) &#x3D;&gt; {
-            this.pokemons &#x3D; this.pokemons.concat(detailedPokemons);
+            // Filtere null-Werte heraus (falls API-Fehler)
+            const validPokemons &#x3D; detailedPokemons.filter(p &#x3D;&gt; p !&#x3D;&#x3D; null);
+            this.pokemons &#x3D; [...this.pokemons, ...validPokemons];
             this.filterPokemons();
             this.isLoading &#x3D; false;
           },
@@ -1361,6 +1592,9 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Loads additional Pokémon data when the user requests more
+   */
   loadMorePokemon(): void {
     if (this.isLoadingMore) return;
     
@@ -1392,6 +1626,10 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Loads all available Pokémon data at once
+   * Resets current data and pagination settings
+   */
   loadAllPokemon(): void {
     this.isLoading &#x3D; true;
     this.currentOffset &#x3D; 0;
@@ -1400,6 +1638,12 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     this.loadPokemon(); 
   }
 
+  /**
+   * Retrieves the primary type of a Pokémon
+   * 
+   * @param pokemon - The Pokémon object to extract the type from
+   * @returns The name of the first type, or &#x27;normal&#x27; if no types exist
+   */
   getPrimaryType(pokemon: any): string {
     if (pokemon?.types &amp;&amp; pokemon.types.length &gt; 0) {
       return pokemon.types[0].type.name;
@@ -1407,18 +1651,36 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     return &#x27;normal&#x27;;
   }
 
+  /**
+   * Gets the color associated with a Pokémon type
+   * 
+   * @param type - The type name to get the color for
+   * @returns The hex color code for the specified type
+   */
   getTypeColor(type: string): string {
     return this.typesColorMap[type.toLowerCase()] || &#x27;#A8A878&#x27;;
   }
 
+  /**
+   * Opens the detail modal for a selected Pokémon
+   * 
+   * @param pokemon - The Pokémon to display in the modal
+   */
   openModal(pokemon: any): void {
     this.selectedPokemon &#x3D; pokemon;
   }
 
+  /**
+   * Closes the detail modal
+   */
   closeModal(): void {
     this.selectedPokemon &#x3D; null;
   }
 
+  /**
+   * Navigates to the previous Pokémon in the list when viewing details
+   * Wraps around to the end of the list if at the beginning
+   */
   navigateToPreviousPokemon(): void {
     if (!this.selectedPokemon) return;
     
@@ -1430,6 +1692,10 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Navigates to the next Pokémon in the list when viewing details
+   * Wraps around to the beginning of the list if at the end
+   */
   navigateToNextPokemon(): void {
     if (!this.selectedPokemon) return;
     

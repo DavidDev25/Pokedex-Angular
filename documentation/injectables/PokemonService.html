@@ -119,6 +119,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service for fetching Pokémon data from the PokéAPI.
+Provides methods to retrieve Pokémon lists, individual Pokémon details,
+species information, abilities and moves.</p>
+
+            </p>
 
 
 
@@ -209,14 +218,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/services/pokemon.service.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/services/pokemon.service.ts:115</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves detailed information about a Pokémon ability.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -227,6 +238,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -241,6 +253,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The full URL to the ability resource</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -250,7 +266,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable containing the ability data</p>
+
                             </div>
                 </td>
             </tr>
@@ -276,14 +293,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/app/services/pokemon.service.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/services/pokemon.service.ts:125</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves detailed information about a Pokémon move.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -294,6 +313,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -308,6 +328,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The full URL to the move resource</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -317,7 +341,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable containing the move data</p>
+
                             </div>
                 </td>
             </tr>
@@ -343,14 +368,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/services/pokemon.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/services/pokemon.service.ts:71</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves detailed information for a specific Pokémon by name.
+Includes the basic Pokémon data enhanced with species information.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -361,6 +389,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -375,6 +404,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The name of the Pokémon to retrieve</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -384,7 +417,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable containing detailed Pokémon data or null if not found</p>
+
                             </div>
                 </td>
             </tr>
@@ -410,14 +444,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/app/services/pokemon.service.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/services/pokemon.service.ts:32</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a paginated list of Pokémon with their details and species information.
+Uses forkJoin to parallelize requests for better performance.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -429,6 +466,7 @@
                                                 <td>Type</td>
                                             <td>Optional</td>
                                                 <td>Default value</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -446,6 +484,10 @@
                                                     <code>0</code>
                                             </td>
 
+                                            <td>
+                                                    <p>Number of Pokémon to skip (for pagination), defaults to 0</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>limit</td>
@@ -461,6 +503,10 @@
                                                     <code>20</code>
                                             </td>
 
+                                            <td>
+                                                    <p>Maximum number of Pokémon to retrieve, defaults to 20</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -470,7 +516,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable containing Pokémon list data with detailed information</p>
+
                             </div>
                 </td>
             </tr>
@@ -499,14 +546,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/services/pokemon.service.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/services/pokemon.service.ts:99</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Fetches species-specific data for a Pokémon from the provided URL.
+This includes information like evolution chains, flavor text, genera, etc.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -517,6 +567,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -531,6 +582,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The full URL to the species resource</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -540,7 +595,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Promise containing the species data or null if the request fails</p>
+
                             </div>
                 </td>
             </tr>
@@ -577,10 +633,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/pokemon.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/services/pokemon.service.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base URL for the PokéAPI</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -603,10 +665,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/services/pokemon.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/pokemon.service.ts:16</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HttpClient instance used to make API requests</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -620,11 +688,33 @@
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Observable, map, switchMap, forkJoin, of, catchError } from &#x27;rxjs&#x27;;
 
+/**
+ * Service for fetching Pokémon data from the PokéAPI.
+ * Provides methods to retrieve Pokémon lists, individual Pokémon details,
+ * species information, abilities and moves.
+ */
 @Injectable({ providedIn: &#x27;root&#x27; })
 export class PokemonService {
+  /**
+   * HttpClient instance used to make API requests
+   * @private
+   */
   private http &#x3D; inject(HttpClient);
+  
+  /**
+   * Base URL for the PokéAPI
+   * @private
+   */
   private apiUrl &#x3D; &#x27;https://pokeapi.co/api/v2&#x27;;
 
+  /**
+   * Retrieves a paginated list of Pokémon with their details and species information.
+   * Uses forkJoin to parallelize requests for better performance.
+   * 
+   * @param offset Number of Pokémon to skip (for pagination), defaults to 0
+   * @param limit Maximum number of Pokémon to retrieve, defaults to 20
+   * @returns Observable containing Pokémon list data with detailed information
+   */
   getPokemonList(offset &#x3D; 0, limit &#x3D; 20): Observable&lt;any&gt; {
     return this.http.get(&#x60;${this.apiUrl}/pokemon?offset&#x3D;${offset}&amp;limit&#x3D;${limit}&#x60;)
       .pipe(
@@ -657,6 +747,13 @@ export class PokemonService {
       );
   }
 
+  /**
+   * Retrieves detailed information for a specific Pokémon by name.
+   * Includes the basic Pokémon data enhanced with species information.
+   * 
+   * @param name The name of the Pokémon to retrieve
+   * @returns Observable containing detailed Pokémon data or null if not found
+   */
   getPokemonByName(name: string): Observable&lt;any&gt; {
     return this.http.get(&#x60;${this.apiUrl}/pokemon/${name}&#x60;).pipe(
       switchMap((pokemonData: any) &#x3D;&gt; 
@@ -677,6 +774,14 @@ export class PokemonService {
     );
   }
 
+  /**
+   * Fetches species-specific data for a Pokémon from the provided URL.
+   * This includes information like evolution chains, flavor text, genera, etc.
+   * 
+   * @param speciesUrl The full URL to the species resource
+   * @returns Promise containing the species data or null if the request fails
+   * @private Internal helper method
+   */
   private async getPokemonSpeciesFromUrl(speciesUrl: string): Promise&lt;any&gt; {
     try {
       const speciesData &#x3D; await this.http.get(speciesUrl).toPromise();
@@ -687,10 +792,22 @@ export class PokemonService {
     }
   }
 
+  /**
+   * Retrieves detailed information about a Pokémon ability.
+   * 
+   * @param abilityUrl The full URL to the ability resource
+   * @returns Observable containing the ability data
+   */
   getAbilityDetails(abilityUrl: string): Observable&lt;any&gt; {
     return this.http.get(abilityUrl);
   }
   
+  /**
+   * Retrieves detailed information about a Pokémon move.
+   * 
+   * @param moveUrl The full URL to the move resource
+   * @returns Observable containing the move data
+   */
   getMoveDetails(moveUrl: string): Observable&lt;any&gt; {
     return this.http.get(moveUrl);
   }

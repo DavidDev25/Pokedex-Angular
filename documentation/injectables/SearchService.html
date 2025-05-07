@@ -119,6 +119,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service responsible for managing search functionality across the application.</p>
+<p>This service provides a centralized way to handle search terms,
+allowing components to both update and subscribe to search term changes.</p>
+
+            </p>
 
 
 
@@ -194,14 +203,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/app/services/search.service.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/services/search.service.ts:35</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates the current search term.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">// To update the search term:
+this.searchService.updateSearchTerm(&#39;pikachu&#39;);</code></pre></div></div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -212,6 +224,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -226,6 +239,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The new search term to be broadcast to all subscribers</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -265,10 +284,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/search.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/search.service.ts:25</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observable that components can subscribe to for receiving search term updates.
+This exposes the searchTerms BehaviorSubject as a read-only Observable.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -291,10 +317,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/search.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/services/search.service.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private BehaviorSubject that stores the current search term.
+Initial value is an empty string.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -307,14 +340,37 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { BehaviorSubject } from &#x27;rxjs&#x27;;
 
+/**
+ * Service responsible for managing search functionality across the application.
+ * 
+ * This service provides a centralized way to handle search terms,
+ * allowing components to both update and subscribe to search term changes.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class SearchService {
+  /**
+   * Private BehaviorSubject that stores the current search term.
+   * Initial value is an empty string.
+   * @private
+   */
   private searchTerms &#x3D; new BehaviorSubject&lt;string&gt;(&#x27;&#x27;);
   
+  /**
+   * Observable that components can subscribe to for receiving search term updates.
+   * This exposes the searchTerms BehaviorSubject as a read-only Observable.
+   */
   currentSearchTerm$ &#x3D; this.searchTerms.asObservable();
   
+  /**
+   * Updates the current search term.
+   * 
+   * @param term - The new search term to be broadcast to all subscribers
+   * @example
+   * // To update the search term:
+   * this.searchService.updateSearchTerm(&#x27;pikachu&#x27;);
+   */
   updateSearchTerm(term: string): void {
     this.searchTerms.next(term);
   }

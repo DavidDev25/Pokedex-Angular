@@ -144,13 +144,32 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
   providers: [
+    /**
+     * Provides the router functionality with the routes defined in app.routes.ts
+     */
     provideRouter(routes),
+    
+    /**
+     * Provides the HttpClient service for making API requests
+     * Used throughout the application to fetch Pokemon data
+     */
     provideHttpClient()
   ]
 }</code>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application configuration for the Pokedex Angular application.</p>
+<p>This configuration defines the core providers needed for the application:</p>
+<ul>
+<li>Router configuration using the defined routes</li>
+<li>HTTP client for making API requests to the Pokemon API</li>
+</ul>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>

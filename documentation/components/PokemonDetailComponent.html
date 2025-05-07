@@ -120,6 +120,15 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component responsible for displaying detailed information about a specific Pokémon.</p>
+<p>This component retrieves Pokémon data based on the name parameter from the URL route
+and displays comprehensive information about the selected Pokémon.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -262,14 +271,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:40</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the component by loading Pokémon data based on the route parameter
+Retrieves the Pokémon name from the URL and fetches corresponding data</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -304,10 +316,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The Pokémon data object containing all details about the selected Pokémon</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -330,10 +348,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Service for retrieving Pokémon data from the API</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -356,10 +380,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/pokemon-detail/pokemon-detail.component.ts:28</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The activated route service used to access URL parameters</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -374,6 +404,12 @@ import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 import { PokemonService } from &#x27;../../services/pokemon.service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
+/**
+ * Component responsible for displaying detailed information about a specific Pokémon.
+ * 
+ * This component retrieves Pokémon data based on the name parameter from the URL route
+ * and displays comprehensive information about the selected Pokémon.
+ */
 @Component({
   selector: &#x27;app-pokemon-detail&#x27;,
   standalone: true,
@@ -381,10 +417,27 @@ import { CommonModule } from &#x27;@angular/common&#x27;;
   templateUrl: &#x27;./pokemon-detail.component.html&#x27;,
 })
 export class PokemonDetailComponent implements OnInit {
+  /**
+   * The Pokémon data object containing all details about the selected Pokémon
+   */
   pokemon: any;
+  
+  /**
+   * The activated route service used to access URL parameters
+   * @private
+   */
   private route &#x3D; inject(ActivatedRoute);
+  
+  /**
+   * Service for retrieving Pokémon data from the API
+   * @private
+   */
   private pokemonService &#x3D; inject(PokemonService);
 
+  /**
+   * Initializes the component by loading Pokémon data based on the route parameter
+   * Retrieves the Pokémon name from the URL and fetches corresponding data
+   */
   ngOnInit() {
     const name &#x3D; this.route.snapshot.paramMap.get(&#x27;name&#x27;);
     if (name) {
